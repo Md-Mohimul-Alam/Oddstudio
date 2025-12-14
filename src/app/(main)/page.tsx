@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -22,40 +21,59 @@ export default function HomePage() {
   return (
     <>
       {/* Creative Homepage Hero */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-background">
+      <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden">
+        {/* Video Background for entire section */}
+        <div className="absolute inset-0 -z-20 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+            className="w-full h-full object-cover"
+            preload="auto"
+            poster="/videos/poster.jpg"
+          >
+            <source src="/videos/Showreel.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+
         {/* Dynamic Background Marquee */}
         <div className="absolute top-1/2 -translate-y-1/2 w-full -z-10 opacity-[0.03] rotate-[-5deg] scale-110 pointer-events-none">
              <Marquee duration="40s">
-                 <span className="text-[20vh] font-black font-headline uppercase mx-4">CREATE</span>
-                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-stroke">INSPIRE</span>
-                 <span className="text-[20vh] font-black font-headline uppercase mx-4">DISRUPT</span>
-                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-stroke">GROW</span>
+                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-white">CREATE</span>
+                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-stroke text-white">INSPIRE</span>
+                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-white">DISRUPT</span>
+                 <span className="text-[20vh] font-black font-headline uppercase mx-4 text-stroke text-white">GROW</span>
              </Marquee>
         </div>
 
         <div className="container relative z-10 grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7 order-2 lg:order-1 text-center lg:text-left">
                 <Reveal>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium mb-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-white text-sm font-medium mb-6 backdrop-blur-sm">
                         <Zap className="w-4 h-4 fill-current" />
                         <span>Redefining Digital Experiences</span>
                     </div>
-                    <h1 className="text-7xl sm:text-7xl md:text-8xl font-bold font-headline leading-[0.85] tracking-tighter mb-8">
+                    <h1 className="text-7xl sm:text-7xl md:text-8xl font-bold font-headline leading-[0.85] tracking-tighter mb-8 text-white">
                         Reflection of your <br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600">THOUGHTS.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">THOUGHTS.</span>
                     </h1>
                 </Reveal>
                 <Reveal delay={0.1}>
-                    <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
-                        We are <b>Odd Studio</b>. We blend creative rebellion with strategic precision to build brands that dominate culture.
+                    <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
+                        We are <b className="text-white">Odd Studio</b>. We blend creative rebellion with strategic precision to build brands that dominate culture.
                     </p>
                 </Reveal>
                 <Reveal delay={0.2}>
                     <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-                        <Button asChild size="lg" className="text-lg px-10 h-16 rounded-full shadow-2xl shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+                        <Button asChild size="lg" className="text-lg px-10 h-16 rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all hover:-translate-y-1 bg-white text-foreground hover:bg-white/90">
                             <Link href="/portfolio">View Selected Work</Link>
                         </Button>
-                        <Button asChild size="lg" variant="ghost" className="text-lg px-8 h-16 rounded-full hover:bg-secondary/50 transition-all border-2 border-transparent hover:border-border">
+                        <Button asChild size="lg" variant="outline" className="text-lg px-8 h-16 rounded-full hover:bg-white/20 transition-all border-2 border-white/30 text-white hover:text-white hover:border-white">
                             <Link href="/contact">Book a Service</Link>
                         </Button>
                     </div>
@@ -66,15 +84,15 @@ export default function HomePage() {
                  <div className="relative w-full h-full flex items-center justify-center">
                     <FloatingCube />
                     {/* Glowing backing */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-tr from-primary/20 to-blue-500/20 rounded-full blur-[80px] -z-10" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-tr from-primary/30 to-blue-500/30 rounded-full blur-[80px] -z-10" />
                  </div>
             </div>
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50 animate-bounce">
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <ArrowRight className="w-4 h-4 rotate-90" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-70 animate-bounce">
+            <span className="text-xs uppercase tracking-widest text-white">Scroll</span>
+            <ArrowRight className="w-4 h-4 rotate-90 text-white" />
         </div>
       </section>
 

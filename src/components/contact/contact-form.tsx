@@ -36,9 +36,21 @@ export function ContactForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
 
-    const serviceID = 'YOUR_SERVICE_ID';
-    const templateID = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_z7pyzem';
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_e718gkm';
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'Gd7zt6yopV3-jXAX8';
+
+    // Create formatted time string
+    const now = new Date();
+    const formattedTime = now.toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZoneName: 'short'
+    });
 
     const templateParams = {
       from_name: values.name,
@@ -46,6 +58,8 @@ export function ContactForm() {
       to_name: 'Odd Studio',
       service: values.service,
       message: values.message,
+      reply_to: values.email, // Added for better email client support
+      time: formattedTime,    // Added for your template
     };
 
     emailjs
