@@ -1,22 +1,22 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, ReactElement } from 'react';
 
-export default function HeroVideo() {
+export default function HeroVideo(): ReactElement {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    const video = videoRef.current;
+  useEffect((): (() => void) | undefined => {
+    const video: HTMLVideoElement | null = videoRef.current;
     if (!video) return;
 
     // Force video to play
-    const playVideo = () => {
-      video.play().catch(error => {
+    const playVideo = (): void => {
+      video.play().catch((error: DOMException) => {
         console.log('Video autoplay failed:', error);
         // Try again with a promise
-        const playPromise = video.play();
+        const playPromise: Promise<void> = video.play();
         if (playPromise !== undefined) {
-          playPromise.catch(e => {
+          playPromise.catch((e: DOMException) => {
             console.log('Second attempt failed:', e);
             // Show play button if still failing
             showPlayButton();
@@ -25,11 +25,11 @@ export default function HeroVideo() {
       });
     };
 
-    const showPlayButton = () => {
-      const playButton = document.createElement('button');
+    const showPlayButton = (): void => {
+      const playButton: HTMLButtonElement = document.createElement('button');
       playButton.className = 'absolute bottom-4 right-4 z-30 bg-black/70 text-white px-4 py-2 rounded-full text-sm hover:bg-black';
       playButton.textContent = '▶ Play Background Video';
-      playButton.onclick = () => {
+      playButton.onclick = (): void => {
         video.play();
         playButton.remove();
       };
@@ -44,7 +44,7 @@ export default function HeroVideo() {
       playVideo();
     }
 
-    return () => {
+    return (): void => {
       video.removeEventListener('canplay', playVideo);
     };
   }, []);
@@ -59,7 +59,7 @@ export default function HeroVideo() {
       controls={false}
       className="w-full h-full object-cover"
       preload="auto"
-      poster="/videos/poster.jpg"
+      poster="/videos/Showreel.mp4"
       style={{ 
         position: 'absolute',
         top: 0,
