@@ -73,7 +73,7 @@ export default function HomePage() {
                         <Button asChild size="lg" className="text-lg px-10 h-16 rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all hover:-translate-y-1 bg-white text-foreground hover:bg-white/90">
                             <Link href="/portfolio">View Selected Work</Link>
                         </Button>
-                        <Button asChild size="lg" variant="outline" className="text-lg px-8 h-16 rounded-full hover:bg-white/20 transition-all border-2 border-white/30 text-white hover:text-white hover:border-white">
+                        <Button asChild size="lg" variant="outline" className="text-lg px-8 h-16 rounded-full bg-clip-text bg-gradient-to-r from-primary to-orange-400 transition-all border-2 border-white/30 text-white hover:text-white hover:border-white">
                             <Link href="/contact">Book a Service</Link>
                         </Button>
                     </div>
