@@ -3,11 +3,26 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import Reveal from '@/components/shared/reveal';
 
+
 const teamMembers = [
-  { name: 'Johir Parves', role: 'Founder & CEO', image: 'https://placehold.co/400x400.png', hint: 'professional headshot' },
-  { name: 'Jane Smith', role: 'Creative Director', image: 'https://placehold.co/400x400.png', hint: 'creative headshot' },
-  { name: 'Sam Wilson', role: 'Lead Strategist', image: 'https://placehold.co/400x400.png', hint: 'corporate headshot' },
-  { name: 'Emily White', role: 'Head of Production', image: 'https://placehold.co/400x400.png', hint: 'person smiling' },
+  { 
+    name: 'Aniqa Ana Pushan', 
+    role: 'CEO', 
+    image: '/profile/Aniqa.png',  // Use string path
+    hint: 'corporate headshot' 
+  },
+  { 
+    name: 'Mohammed Johirul Islam Perves Khan', 
+    role: 'Creative Director', 
+    image: '/profile/Johir.png',   // Use string path (note capital J)
+    hint: 'creative headshot' 
+  },
+  { 
+    name: 'Akber Hossain', 
+    role: 'Business Development Executive', 
+    image: '/profile/Akber.png',   // Use string path
+    hint: 'professional headshot' 
+  },
 ];
 
 export default function AboutPage() {
@@ -157,7 +172,7 @@ export default function AboutPage() {
             </h3>
           </Reveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
             {teamMembers.map((member, i) => (
               <Reveal key={member.name} delay={i * 0.1}>
                 <div className="group text-center">
