@@ -20,7 +20,12 @@ export default function AboutPage() {
                 <span className="text-primary">ODD</span> STUDIO
             </span>
         }
-        subtitle="We are creators, dreamers, and doers. A team obsessed with making the internet a more interesting place."
+        subtitle="Every business has a story.
+Not every story is told with honesty and clarity.
+If you believe your product deserves to be understood, not just seen,
+we should talk.
+Let’s start with a conversation.
+"
         className="bg-background"
         align="left"
         scrollingText="CREATIVE • BOLD • UNIQUE • "
