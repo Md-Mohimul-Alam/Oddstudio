@@ -18,14 +18,14 @@ const servicesData = {
       { 
         title: "Content",
         subServices: [
-            { title: "Model-Led Video Promotions", video: "https://placehold.co/1280x720.png", hint: "video promotion" },
+            { title: "Model-Led Video Promotions", video: "/public/videos/ContentPresentationLR.mp4", hint: "video promotion" },
             { title: "Reels and Promo", video: "https://placehold.co/1280x720.png", hint: "social media reel" }
         ]
       },
       { 
         title: "Beyond Branding",
         subServices: [
-            { title: "Online Video Commercial", video: "https://placehold.co/1280x720.png", hint: "online commercial" }
+            { title: "Online Video Commercial", video: "/public/videos/OVCLR.mp4", hint: "online commercial" }
         ]
       },
       {
