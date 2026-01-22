@@ -18,22 +18,22 @@ const servicesData = {
       { 
         title: "Content",
         subServices: [
-            { title: "Model-Led Video Promotions", video: "/public/videos/ContentPresentationLR.mp4", hint: "video promotion" },
-            { title: "Reels and Promo", video: "https://placehold.co/1280x720.png", hint: "social media reel" }
+            { title: "Model-Led Video Promotions", video: "/videos/ContentPresentationLR.mp4", hint: "video promotion" },
+            { title: "Reels and Promo", video: "/videos/reel-promo.mp4", hint: "social media reel" }
         ]
       },
       { 
         title: "Beyond Branding",
         subServices: [
-            { title: "Online Video Commercial", video: "/public/videos/OVCLR.mp4", hint: "online commercial" }
+            { title: "Online Video Commercial", video: "/videos/OVCLR.mp4", hint: "online commercial" }
         ]
       },
       {
         title: "Creatives",
         subServices: [
-            { title: "Motion Graphics", video: "https://placehold.co/1280x720.png", hint: "motion graphics" },
-            { title: "Carousel Creatives", video: "https://placehold.co/1280x720.png", hint: "carousel video" },
-            { title: "Product Videography", video: "https://placehold.co/1280x720.png", hint: "product video" }
+            { title: "Motion Graphics", video: "/videos/motion-graphics.mp4", hint: "motion graphics" },
+            { title: "Carousel Creatives", video: "/videos/carousel.mp4", hint: "carousel video" },
+            { title: "Product Videography", video: "/videos/product-video.mp4", hint: "product video" }
         ]
       }
     ]
@@ -68,7 +68,7 @@ const servicesData = {
     label: "Copywriting",
     icon: PenTool,
     description: "Words have power. Our expert copywriters craft compelling narratives, catchy taglines, and persuasive content for websites, ads, and marketing materials that convert readers into customers.",
-    video: "https://placehold.co/1280x720.png",
+    video: "/videos/copywriting.mp4",
     hint: "creative writing"
   },
   strategy: {
@@ -76,34 +76,38 @@ const servicesData = {
     icon: Rocket,
     description: "We offer a unified approach to growth, combining business development, branding, and strategic planning to build a cohesive and powerful brand presence.",
     subServices: [
-      { title: "Business Development, Branding, and Strategic Planning", video: "https://placehold.co/1280x720.png", hint: "business strategy" },
+      { title: "Business Development, Branding, and Strategic Planning", video: "/videos/strategy.mp4", hint: "business strategy" },
     ]
   },
   onlineMarketing: {
     label: "Online Marketing",
     icon: Megaphone,
     description: "Data-driven online campaigns to boost your reach, engagement, and conversions.",
-    video: "https://placehold.co/1280x720.png",
+    video: "/videos/marketing.mp4",
     hint: "digital marketing"
   },
 };
 
 const VideoPlaceholder = ({ src, title, hint }: { src: string; title: string; hint: string }) => (
-    <div className="space-y-4">
-        <div className="aspect-video bg-muted rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg">
-            <Image src={src} alt={`Video placeholder for ${title}`} fill className="object-cover" data-ai-hint={hint} />
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                <div className="w-16 h-16 bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm cursor-pointer hover:bg-white/50 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </div>
-            </div>
-        </div>
-        <Button asChild variant="secondary" className="w-full">
-            <Link href="/portfolio">View Full Work</Link>
-        </Button>
+  <div className="space-y-4">
+    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center relative overflow-hidden shadow-lg">
+      <video 
+        src={src} 
+        className="w-full h-full object-cover"
+        controls
+        data-ai-hint={hint}
+        title={title}
+        preload="metadata"
+      >
+        <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
+    <Button asChild variant="secondary" className="w-full">
+      <Link href="/portfolio">View Full Work</Link>
+    </Button>
+  </div>
 );
-
 
 export default function ServicesTabs() {
   return (
@@ -131,7 +135,13 @@ export default function ServicesTabs() {
                                 <Card key={item.title} className="overflow-hidden group">
                                     <CardContent className="p-0">
                                         <div className="aspect-[4/3] relative">
-                                            <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" data-ai-hint={item.hint} />
+                                            <Image 
+                                              src={item.image} 
+                                              alt={item.title} 
+                                              fill 
+                                              className="object-cover transition-transform duration-300 group-hover:scale-105" 
+                                              data-ai-hint={item.hint} 
+                                            />
                                             <Badge variant="secondary" className="absolute top-3 right-3">{category.title}</Badge>
                                         </div>
                                         <div className="p-4">
