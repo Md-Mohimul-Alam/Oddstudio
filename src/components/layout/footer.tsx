@@ -17,7 +17,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t relative overflow-hidden">
+    <footer className="bg-card border-t-[3px] border-t-[#ff0000] relative overflow-hidden">
       {/* Large decorative text */}
       <div className="absolute -top-10 left-0 w-full overflow-hidden opacity-[0.03] pointer-events-none select-none">
         <span className="text-[20vw] font-bold font-headline leading-none whitespace-nowrap">
@@ -117,7 +117,7 @@ export default function Footer() {
           <p>
             &copy; {new Date().getFullYear()} Odd Studio. All rights reserved.
           </p>
-          <p>Designed & Developed by M K Abir.</p>
+          <p>Designed & Developed by MD. Mohimul Alam.</p>
         </div>
       </div>
     </footer>

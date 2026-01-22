@@ -23,7 +23,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b-[3px] border-b-[#ff0000] bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-20 items-center justify-between relative">
         <div className="flex items-center">
           <Link href="/" className="flex items-center transition-opacity hover:opacity-80" onClick={() => setIsOpen(false)}>
