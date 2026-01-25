@@ -119,8 +119,8 @@ export default function AboutPage() {
         <Reveal>
             <div className="grid md:grid-cols-2 gap-8 mb-32">
               <div className="bg-card border p-12 rounded-[2.5rem] relative overflow-hidden group hover:border-primary/50 transition-colors shadow-xl">
-                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-30 transition-opacity duration-500 transform group-hover:-rotate-12">
-                        <Image src="/mission.png" alt="icon" width={150} height={150} className="grayscale" />
+                    <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-30 transition-opacity duration-500 transform group-hover:-rotate-12">
+                        <Image src="/mission.png" alt="icon" width={150} height={150} />
                     </div>
                     <p className="mb-6 text-2xl text-justify text-muted-foreground leading-relaxed">
                      We are on a<span className="text-4xl text-black font-bold font-headline mb-6"> MISSION!</span>
@@ -136,8 +136,8 @@ export default function AboutPage() {
                     </ul>
                 </div>
                 <div className="bg-card border p-12 rounded-[2.5rem] relative overflow-hidden group hover:border-primary/50 transition-colors shadow-xl">
-                    <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-30 transition-opacity duration-500 transform group-hover:rotate-12">
-                        <Image src="/vision.png" alt="icon" width={150} height={150} className="grayscale" />
+                    <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-30 transition-opacity duration-500 transform group-hover:rotate-12">
+                        <Image src="/vision.png" alt="icon" width={150} height={150} />
                     </div>
                     <p className="mb-6 text-2xl text-justify text-muted-foreground leading-relaxed">
                       Responsibility, clarity and trust <span className="text-4xl text-black font-bold font-headline mb-6">OUR VISION!</span>
