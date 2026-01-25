@@ -70,10 +70,10 @@ export default function HomePage() {
                 </Reveal>
                 <Reveal delay={0.2}>
                     <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-                        <Button asChild size="lg" className="text-lg px-10 h-16 rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all hover:-translate-y-1 bg-white text-foreground hover:bg-white/90">
+                        <Button asChild size="lg" className="text-lg px-10 h-16 rounded-full shadow-2xl shadow-primary/40 hover:shadow-primary/60 transition-all hover:-translate-y-1 bg-[white] text-foreground hover:bg-[#ff0000] hover:text-white">
                             <Link href="/portfolio">View Selected Work</Link>
                         </Button>
-                        <Button asChild size="lg" variant="outline" className="text-lg px-8 h-16 rounded-full bg-clip-text bg-gradient-to-r from-primary to-orange-400 transition-all border-2 border-white/30 text-white hover:text-white hover:border-white">
+                        <Button asChild size="lg" variant="outline" className="text-lg px-8 h-16 rounded-full bg-clip-text bg-gradient-to-r from-primary to-orange-400 transition-all border-2 border-white/30 text-white hover:text-[#ff0000] hover:border-[#ff0000]">
                             <Link href="/contact">Book a Service</Link>
                         </Button>
                     </div>
