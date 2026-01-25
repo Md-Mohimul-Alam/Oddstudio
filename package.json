@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
+  "homepage": "https://oddstudiovision.com",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^4.1.3",

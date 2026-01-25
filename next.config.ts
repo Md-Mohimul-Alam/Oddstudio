@@ -27,26 +27,58 @@ const nextConfig: NextConfig = {
         hostname: 'www.transparenttextures.com',
         port: '',
         pathname: '/**',
+      },
+      // Add your own domain for images
+      {
+        protocol: 'https',
+        hostname: 'oddstudiovision.com',
+        port: '',
+        pathname: '/**',
+      },
+      // Add Cloudinary domain for next-cloudinary
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
       }
     ],
+    // Optional: Add if using next-cloudinary
+    formats: ['image/avif', 'image/webp'],
   },
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: 'dhbyx1flu',
+    NEXT_PUBLIC_SITE_URL: process.env.NODE_ENV === 'production' 
+      ? 'https://oddstudiovision.com' 
+      : 'http://localhost:9002',
   },
   
-  // 🔽 ADD THESE CONFIGURATIONS FOR YOUR DOMAIN 🔽
+  // 🔽 DOMAIN CONFIGURATION 🔽
   
-  // Set your production URL
-  basePath: process.env.NODE_ENV === 'production' ? '' : '',
-  
-  // Ensure trailing slash behavior (optional)
+  // For Next.js 15, use this approach
   trailingSlash: false,
   
-  // Redirects configuration
+  // Enable experimental features if needed (optional)
+  experimental: {
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
+  },
+  
+  // Redirects - Crucial for domain setup
   async redirects() {
-    return [
-      // Redirect from Netlify subdomain to your custom domain
-      {
+    const isProduction = process.env.NODE_ENV === 'production';
+    
+    const redirects = [];
+    
+    if (isProduction) {
+      // Redirect from Netlify subdomain to custom domain
+      redirects.push({
         source: '/:path*',
         has: [
           {
@@ -56,9 +88,10 @@ const nextConfig: NextConfig = {
         ],
         destination: 'https://oddstudiovision.com/:path*',
         permanent: true,
-      },
-      // Optional: Redirect www to non-www
-      {
+      });
+      
+      // Redirect www to non-www
+      redirects.push({
         source: '/:path*',
         has: [
           {
@@ -68,9 +101,10 @@ const nextConfig: NextConfig = {
         ],
         destination: 'https://oddstudiovision.com/:path*',
         permanent: true,
-      },
-      // Optional: Redirect HTTP to HTTPS
-      {
+      });
+      
+      // Redirect HTTP to HTTPS
+      redirects.push({
         source: '/:path*',
         has: [
           {
@@ -81,16 +115,26 @@ const nextConfig: NextConfig = {
         ],
         destination: 'https://oddstudiovision.com/:path*',
         permanent: true,
-      },
-    ];
+      });
+    }
+    
+    return redirects;
   },
   
-  // Headers configuration for security
+  // Headers for security
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -106,6 +150,10 @@ const nextConfig: NextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
         ],
       },
