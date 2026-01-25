@@ -113,7 +113,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+        <div className="pt-8 border-t-[1px] border-t-[#ff0000] border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>
             &copy; {new Date().getFullYear()} Odd Studio. All rights reserved.
           </p>
