@@ -8,44 +8,46 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  
+  // Correct Turbopack configuration
+  experimental: {
+    turbo: {
+      // Optional: Add specific rules if needed
+      // rules: {
+      //   '*.svg': {
+      //     loaders: ['@svgr/webpack'],
+      //     as: '*.js',
+      //   },
+      // },
+    },
+  },
+  
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'i.ibb.co',
-        port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'www.transparenttextures.com',
-        port: '',
-        pathname: '/**',
       },
-      // Add your own domain for images
       {
         protocol: 'https',
         hostname: 'oddstudiovision.com',
-        port: '',
-        pathname: '/**',
       },
-      // Add Cloudinary domain for next-cloudinary
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-        port: '',
-        pathname: '/**',
       }
     ],
-    // Optional: Add if using next-cloudinary
     formats: ['image/avif', 'image/webp'],
   },
+  
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: 'dhbyx1flu',
     NEXT_PUBLIC_SITE_URL: process.env.NODE_ENV === 'production' 
@@ -53,32 +55,17 @@ const nextConfig: NextConfig = {
       : 'http://localhost:9002',
   },
   
-  // 🔽 DOMAIN CONFIGURATION 🔽
-  
-  // For Next.js 15, use this approach
   trailingSlash: false,
   
-  // Enable experimental features if needed (optional)
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
-  },
-  
-  // Redirects - Crucial for domain setup
+  // Redirects - Only apply in production
   async redirects() {
-    const isProduction = process.env.NODE_ENV === 'production';
+    // Only apply redirects in production
+    if (process.env.NODE_ENV !== 'production') {
+      return [];
+    }
     
-    const redirects = [];
-    
-    if (isProduction) {
-      // Redirect from Netlify subdomain to custom domain
-      redirects.push({
+    return [
+      {
         source: '/:path*',
         has: [
           {
@@ -88,10 +75,8 @@ const nextConfig: NextConfig = {
         ],
         destination: 'https://oddstudiovision.com/:path*',
         permanent: true,
-      });
-      
-      // Redirect www to non-www
-      redirects.push({
+      },
+      {
         source: '/:path*',
         has: [
           {
@@ -101,27 +86,10 @@ const nextConfig: NextConfig = {
         ],
         destination: 'https://oddstudiovision.com/:path*',
         permanent: true,
-      });
-      
-      // Redirect HTTP to HTTPS
-      redirects.push({
-        source: '/:path*',
-        has: [
-          {
-            type: 'header',
-            key: 'x-forwarded-proto',
-            value: 'http',
-          },
-        ],
-        destination: 'https://oddstudiovision.com/:path*',
-        permanent: true,
-      });
-    }
-    
-    return redirects;
+      },
+    ];
   },
   
-  // Headers for security
   async headers() {
     return [
       {
@@ -147,13 +115,10 @@ const nextConfig: NextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          // Add Referrer-Policy for security
           {
             key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            value: 'origin-when-cross-origin',
           },
         ],
       },
