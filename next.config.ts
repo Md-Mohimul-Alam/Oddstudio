@@ -9,20 +9,21 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   
-  // Correct Turbopack configuration
-  experimental: {
-    turbo: {
-      // Optional: Add specific rules if needed
-      // rules: {
-      //   '*.svg': {
-      //     loaders: ['@svgr/webpack'],
-      //     as: '*.js',
-      //   },
-      // },
-    },
-  },
+  // 🔽 REMOVE Turbopack for Netlify deployment
+  // Netlify doesn't support Turbopack in production
+  // experimental: {
+  //   turbo: {},
+  // },
   
+  // 🔽 ADD this for Netlify static export
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  
+  // 🔽 ADD for trailingSlash handling
+  trailingSlash: false,
+  
+  // 🔽 ADD for static optimization
   images: {
+    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
@@ -50,32 +51,16 @@ const nextConfig: NextConfig = {
   
   env: {
     NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: 'dhbyx1flu',
-    NEXT_PUBLIC_SITE_URL: process.env.NODE_ENV === 'production' 
-      ? 'https://oddstudiovision.com' 
-      : 'http://localhost:9002',
+    NEXT_PUBLIC_SITE_URL: 'https://oddstudiovision.com',
   },
   
-  trailingSlash: false,
-  
-  // Redirects - Only apply in production
+  // 🔽 FIX redirects - Netlify handles these differently
+  // Remove or modify these redirects - they'll cause infinite loops
   async redirects() {
-    // Only apply redirects in production
-    if (process.env.NODE_ENV !== 'production') {
-      return [];
-    }
-    
+    // Since you're using Netlify, handle redirects in netlify.toml instead
     return [
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'oddstudiovision.netlify.app',
-          },
-        ],
-        destination: 'https://oddstudiovision.com/:path*',
-        permanent: true,
-      },
+      // Remove the netlify.app redirect - it will cause infinite loop
+      // Keep only this if you want to force www to non-www
       {
         source: '/:path*',
         has: [
@@ -115,7 +100,6 @@ const nextConfig: NextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
-          // Add Referrer-Policy for security
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
