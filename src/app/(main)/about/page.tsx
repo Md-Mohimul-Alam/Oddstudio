@@ -16,13 +16,7 @@ const teamMembers = [
     role: 'Creative Director', 
     image: '/profile/Johir.png',   // Use string path (note capital J)
     hint: 'creative headshot' 
-  },
-  { 
-    name: 'Akber Hossain', 
-    role: 'Business Development Executive', 
-    image: '/profile/Akber.png',   // Use string path
-    hint: 'professional headshot' 
-  },
+  }
 ];
 
 export default function AboutPage() {
