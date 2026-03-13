@@ -166,7 +166,7 @@ export default function AboutPage() {
             </h3>
           </Reveal>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-20">
             {teamMembers.map((member, i) => (
               <Reveal key={member.name} delay={i * 0.1}>
                 <div className="group text-center">
